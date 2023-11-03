@@ -6,7 +6,7 @@ class UserLottoNumber {
 
   async userBaseNumber() {
     const input = await Console.readLineAsync();
-    this.baseNumbers = input.split(",").map((number) => number.trim());
+    this.baseNumbers = input.split(",").map((number) => parseInt(number.trim(), 10));
     return this.baseNumbers;
   }
 
