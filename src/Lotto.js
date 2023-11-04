@@ -12,6 +12,14 @@ class Lotto {
     if (numbers.length !== 6) {
       throw new Error(ERROR.HOW_MANY_SIX);
     }
+
+    if (!numbers.every((n) => !isNaN(n))) {
+      throw new Error(ERROR.ONLY_NUMBER);
+    }
+
+    if (new Set(numbers).size !== numbers.length) {
+      throw new Error(ERROR.NO_DUPLICATES);
+    }
   }
 
   // TODO: 추가 기능 구현
