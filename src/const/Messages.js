@@ -8,7 +8,7 @@ export const PRINT = {
   HOW_MANY_BUY: "개를 구매했습니다.",
   WINNING_STATISTICS: "당첨 통계",
   DASH_LINE: "---",
-  COUNT: "개",
+  COUNT: "개\n",
   RETURN_RATE: "총 수익률은 %입니다.",
 };
 
