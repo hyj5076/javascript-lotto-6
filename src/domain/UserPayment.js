@@ -1,3 +1,5 @@
+import { ERROR } from "../const/Messages";
+
 class UserPayment {
   constructor() {
     this.payment = null;
@@ -6,7 +8,14 @@ class UserPayment {
   async userPayment() {
     const input = await Console.readLineAsync();
     this.payment = parseInt(input.trim(), 10);
+    this.validate(this.payment);
     return this.payment;
+  }
+
+  #validate(pay) {
+    if (pay % 1000 !== 0) {
+      throw new Error(ERROR.NO_THOUSAND_UNIT);
+    }
   }
 }
 
