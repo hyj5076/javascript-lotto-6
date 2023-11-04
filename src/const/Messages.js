@@ -17,8 +17,9 @@ export const PRINT = {
 };
 
 export const ERROR = {
-  ONLY_NUMBER: "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.",
-  UNIQUE_NUMBER: "[ERROR] 로또 번호는 서로 다른 숫자여야 합니다.",
+  ONLY_NUMBER: "[ERROR] 로또 번호는 숫자만 입력해야 합니다.",
+  RIGHT_RANGE: "[ERROR] 로또 번호는 1부터 45 사이여야 합니다.",
+  NO_DUPLICATES: "[ERROR] 로또 번호는 서로 다른 숫자여야 합니다.",
   HOW_MANY_SIX: "[ERROR] 로또 번호는 6개여야 합니다.",
   HOW_MANY_ONE: "[ERROR] 보너스 숫자는 1개여야 합니다.",
   THOUSAND_UNIT: "[ERROR] 구입금액은 천 원 단위여야 합니다.",
