@@ -1,4 +1,5 @@
 import { ERROR } from "../const/Messages";
+import { Console } from "@woowacourse/mission-utils";
 
 class UserPayment {
   constructor() {
@@ -8,7 +9,7 @@ class UserPayment {
   async userPayment() {
     const input = await Console.readLineAsync();
     this.payment = parseInt(input.trim(), 10);
-    this.validate(this.payment);
+    this.#validate(this.payment);
     return this.payment;
   }
 
