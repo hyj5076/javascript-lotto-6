@@ -20,6 +20,10 @@ class Lotto {
     if (new Set(numbers).size !== numbers.length) {
       throw new Error(ERROR.NO_DUPLICATES);
     }
+
+    if (!numbers.every((n) => n >= 1 && n <= 45)) {
+      throw new Error(ERROR.NUMBER_RANGE);
+    }
   }
 
   // TODO: 추가 기능 구현
