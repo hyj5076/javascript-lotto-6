@@ -39,6 +39,17 @@ describe("사용자 로또 번호", () => {
     const result = array.sort((a, b) => a - b);
     expect(result).toEqual(output);
   });
+
+  test("보너스 번호 - 중복 숫자 예외 발생", () => {
+    const number = 5;
+    const array = [1, 2, 3, 4, 5, 6];
+
+    expect(() => {
+      if (array.includes(number)) {
+        throw new Error("[ERROR]");
+      }
+    }).toThrow("[ERROR]");
+  });
 });
 
 // RunLotteryMachine.js 관련 단위 테스트
