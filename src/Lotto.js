@@ -21,7 +21,7 @@ class Lotto {
       throw new Error(ERROR.NO_DUPLICATES);
     }
 
-    if (!numbers.every((n) => n >= 1 && n <= 45)) {
+    if (numbers.every((n) => n < 1 || n > 45)) {
       throw new Error(ERROR.NUMBER_RANGE);
     }
 
