@@ -1,4 +1,4 @@
-class Result {
+class ReturnRate {
   constructor(prize, payment) {
     this.prize = prize;
     this.payment = payment;
@@ -15,4 +15,4 @@ class Result {
   }
 }
 
-export default Result;
+export default ReturnRate;
