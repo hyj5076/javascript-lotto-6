@@ -1,4 +1,4 @@
-import { PRINT } from "../const/Messages";
+import { PRINT } from "../const/Messages.js";
 
 class ReturnRate {
   constructor(prize, payment) {
@@ -18,7 +18,8 @@ class ReturnRate {
 
   printReturnRate() {
     const print = PRINT.RETURN_RATE;
-    const rateString = print.replace("${rate}", this.rounding().toString());
+    const rateString = print.replace("%", this.rounding().toString());
+    Console.print(rateString);
   }
 }
 
