@@ -19,11 +19,7 @@ class ReturnRate {
   printReturnRate() {
     const print = PRINT.RETURN_RATE;
     const rateString = print.replace("${rate}", this.rounding().toString());
-    console.log(rateString);
   }
 }
-
-const result = new ReturnRate(5000, 50000);
-result.printReturnRate();
 
 export default ReturnRate;
