@@ -8,17 +8,6 @@ class Lotto {
     this.#numbers = numbers;
   }
 
-  getUserLottoNumbers() {
-    return this.#numbers;
-  }
-
-  setUserLottoNumbers(numbersStr) {
-    const lottoNums = numbersStr.split(",").map((numStr) => parseInt(numStr.trim(), 10));
-    this.#validate(lottoNums);
-    this.#numbers = lottoNums;
-    this.ascendingOrder();
-  }
-
   #validate(numbers) {
     if (numbers.length !== 6) {
       throw new Error(ERROR.HOW_MANY_SIX);
