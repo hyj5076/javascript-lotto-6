@@ -7,10 +7,14 @@ class UserBonusNumber {
     this.#bonusNumber = null;
   }
 
-  getBonusNumber(input) {
-    this.#bonusNumber = parseInt(input.trim(), 10);
-    this.#validate(this.#bonusNumber);
+  getBonusNumber() {
     return this.#bonusNumber;
+  }
+
+  setBonusNumber(input) {
+    const number = parseInt(input.trim(), 10);
+    this.#validate(number);
+    this.#bonusNumber = number;
   }
 
   #validate(number) {

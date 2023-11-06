@@ -8,9 +8,13 @@ class UserPayment {
   }
 
   getUserPayment() {
-    this.#payment = parseInt(input.trim(), 10);
-    this.#validate(this.#payment);
     return this.#payment;
+  }
+
+  setUserPayment(input) {
+    const pay = parseInt(input.trim(), 10);
+    this.#validate(pay);
+    this.#payment = pay;
   }
 
   #validate(pay) {
