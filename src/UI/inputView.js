@@ -1,7 +1,7 @@
 import { Console } from "@woowacourse/mission-utils";
 import { ASK } from "../const/Messages.js";
 
-export const input = {
+export const ask = {
   async money() {
     await Console.readLineAsync(ASK.INPUT_MONEY);
   },
