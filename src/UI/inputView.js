@@ -2,15 +2,15 @@ import { Console } from "@woowacourse/mission-utils";
 import { ASK } from "../const/Messages.js";
 
 export const ask = {
-  async money() {
+  async payment() {
     await Console.readLineAsync(ASK.INPUT_MONEY);
   },
 
-  async numbers() {
+  async baseNumbers() {
     await Console.readLineAsync(ASK.INPUT_NUMBERS);
   },
 
-  async bonus() {
+  async bonusNumber() {
     await Console.readLineAsync(ASK.INPUT_BONUS);
   },
 };
