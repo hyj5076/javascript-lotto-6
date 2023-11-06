@@ -8,15 +8,9 @@ class UserBonusNumber {
   }
 
   getBonusNumber(input) {
-    this.setBonusNumber(input);
+    this.#bonusNumber = parseInt(input.trim(), 10);
+    this.#validate(this.#bonusNumber);
     return this.#bonusNumber;
-  }
-
-  setBonusNumber(input) {
-    const trimmedInput = input.trim();
-    const parsedNumber = parseInt(trimmedInput, 10);
-    this.#validate(parsedNumber);
-    this.#bonusNumber = parsedNumber;
   }
 
   #validate(number) {
