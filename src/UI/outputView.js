@@ -7,7 +7,7 @@ export const print = {
   },
 
   prizeStatistics() {
-    Console.print(PRINT.WINNING_STATISTICS);
+    Console.print(PRINT.PRIZE_STATISTICS);
   },
 
   dashLine() {
