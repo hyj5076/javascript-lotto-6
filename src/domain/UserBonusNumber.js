@@ -21,6 +21,7 @@ class UserBonusNumber {
     if (isNaN(number)) {
       throw new Error(ERROR.ONE_NUMBER);
     }
+
     if (number < 1 || number > 45) {
       throw new Error(ERROR.NUMBER_RANGE);
     }
