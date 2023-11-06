@@ -32,6 +32,13 @@ class App {
     this.payment.setUserPayment(pay);
     this.base.setBaseNumbers(baseNums);
     this.bonus.setBonusNumber(bonusNum);
+
+    //const lotto = new Lotto(baseNums);
+    //lotto.ascendingOrder();
+
+    Console.print(pay);
+    Console.print(baseNums);
+    Console.print(bonusNum);
   }
 
   evaluator() {

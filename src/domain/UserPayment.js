@@ -25,7 +25,7 @@ class UserPayment {
 
   numberOfTickets() {
     if (this.#payment === null) {
-      return 0; // 아직 구입 금액이 설정 되지 않았을 때 0 반환
+      return 0;
     }
     const ticketCounts = this.#payment / 1000;
     return ticketCounts;
