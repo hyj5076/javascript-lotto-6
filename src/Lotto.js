@@ -26,6 +26,10 @@ class Lotto {
     }
   }
 
+  getNumbers() {
+    return this.#numbers.slice();
+  }
+
   ascendingOrder() {
     this.#numbers.sort((a, b) => a - b);
   }
