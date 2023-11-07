@@ -29,3 +29,11 @@ export const ERROR = {
   ONE_NUMBER: "[ERROR] 보너스 번호는 1개의 숫자만 입력해야 합니다.",
   NO_THOUSAND_UNIT: "[ERROR] 구입금액은 천 원 단위여야 합니다.",
 };
+
+export const PRIZE_MONEY = {
+  FIFTH: 5000,
+  FOURTH: 50000,
+  THIRD: 1500000,
+  SECOND: 30000000,
+  FIRST: 2000000000,
+};

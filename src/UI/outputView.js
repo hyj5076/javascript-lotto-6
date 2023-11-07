@@ -10,8 +10,9 @@ export const print = {
     Console.print(PRINT.DASH_LINE);
   },
 
-  returnRate() {
-    Console.print(PRINT.RETURN_RATE);
+  returnRate(rate) {
+    const message = PRINT.RETURN_RATE.replace("${rate}", rate.toString());
+    Console.print(message);
   },
 
   howManyBuyTickets(ticketCounts) {

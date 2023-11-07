@@ -3,6 +3,7 @@ import UserBonusNumber from "./domain/UserBonusNumber.js";
 import UserPayment from "./domain/UserPayment.js";
 import UserBaseNumbers from "./domain/UserBaseNumbers.js";
 import LottoEvaluator from "./domain/LottoEvaluator.js";
+import ReturnRate from "./domain/ReturnRate.js";
 import { runLotteryMachine } from "./domain/RunLotteryMachine.js";
 import { ask } from "./UI/inputView.js";
 import { print } from "./UI/outputView.js";
@@ -21,6 +22,7 @@ class App {
       await this.setLotto();
       const userTickets = this.createLotto();
       this.evaluateLotto(userTickets);
+      this.returnRate();
     } catch (error) {
       Console.print(error.message);
       return Promise.reject(error);
@@ -63,6 +65,18 @@ class App {
     this.lottoEvaluator = new LottoEvaluator(this.base.getBaseNumbers(), this.bonus.getBonusNumber());
     const results = this.lottoEvaluator.evaluateTickets(userTickets);
     print.prizeResults(results);
+  }
+
+  returnRate() {
+    const totalPrize = this.lottoEvaluator.calculatePrize(); // 총 상금 계산
+    // 수익률 계산을 위한 ReturnRate 인스턴스 생성
+    const returnRateCalculator = new ReturnRate(totalPrize, this.payment.getUserPayment());
+
+    // 수익률을 문자열로 변환
+    const rateString = returnRateCalculator.printReturnRate();
+
+    // 새로 업데이트된 print.returnRate 메서드를 사용하여 출력
+    print.returnRate(rateString);
   }
 }
 
