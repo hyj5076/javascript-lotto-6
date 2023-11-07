@@ -16,9 +16,8 @@ class ReturnRate {
     return parseFloat(rate.toFixed(2));
   }
 
-  printReturnRate() {
-    const print = PRINT.RETURN_RATE;
-    const rateString = print.replace("${rate}", this.rounding().toString());
+  getReturnRateString() {
+    const rateString = `${this.rounding()}%`;
     return rateString;
   }
 }

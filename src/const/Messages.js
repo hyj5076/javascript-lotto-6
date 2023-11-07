@@ -9,7 +9,7 @@ export const PRINT = {
   PRIZE_STATISTICS: "당첨 통계",
   DASH_LINE: "---",
   COUNT: "개",
-  RETURN_RATE: "총 수익률은 ${rate}%입니다.",
+  RETURN_RATE: "총 수익률은 ${rate}입니다.",
 };
 
 export const PRIZE = {

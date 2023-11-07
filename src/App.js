@@ -68,15 +68,12 @@ class App {
   }
 
   returnRate() {
-    const totalPrize = this.lottoEvaluator.calculatePrize(); // 총 상금 계산
-    // 수익률 계산을 위한 ReturnRate 인스턴스 생성
-    const returnRateCalculator = new ReturnRate(totalPrize, this.payment.getUserPayment());
+    const totalPrize = this.lottoEvaluator.calculatePrize();
+    const totalPayment = this.payment.getUserPayment();
 
-    // 수익률을 문자열로 변환
-    const rateString = returnRateCalculator.printReturnRate();
-
-    // 새로 업데이트된 print.returnRate 메서드를 사용하여 출력
-    print.returnRate(rateString);
+    const returnRateCalculator = new ReturnRate(totalPrize, totalPayment);
+    const returnRateString = returnRateCalculator.getReturnRateString();
+    print.returnRate(returnRateString);
   }
 }
 
