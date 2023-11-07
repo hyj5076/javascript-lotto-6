@@ -1,4 +1,4 @@
-import { ERROR } from "../const/Messages.js";
+import { ERROR, PRINT } from "../const/Messages.js";
 
 class UserPayment {
   constructor() {
@@ -26,7 +26,8 @@ class UserPayment {
       return 0;
     }
     const ticketCounts = this.payment / 1000;
-    return ticketCounts;
+    const printTicketCounts = `${ticketCounts}${PRINT.HOW_MANY_BUY}`;
+    return printTicketCounts;
   }
 }
 
