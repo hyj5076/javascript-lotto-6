@@ -1,5 +1,3 @@
-import { PRINT } from "../const/Messages.js";
-
 class ReturnRate {
   constructor(prize, payment) {
     this.prize = prize;
