@@ -26,8 +26,7 @@ class UserPayment {
       return 0;
     }
     const ticketCounts = this.payment / 1000;
-    const printTicketCounts = `${ticketCounts}${PRINT.HOW_MANY_BUY}`;
-    return printTicketCounts;
+    return ticketCounts;
   }
 }
 

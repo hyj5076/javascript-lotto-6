@@ -21,6 +21,16 @@ export const print = {
   returnRate() {
     Console.print(PRINT.RETURN_RATE);
   },
+
+  ticketCounts(ticketCounts) {
+    const message = `${ticketCounts}${PRINT.HOW_MANY_BUY}`;
+    Console.print(message);
+  },
+
+  formattedNumbers(numbers) {
+    const formattedNumbers = numbers.join(", ");
+    Console.print(`[${formattedNumbers}]`);
+  },
 };
 
 export const prize = {
@@ -29,8 +39,7 @@ export const prize = {
   },
 };
 
-export const counts = {
-  ticket(counts) {
-    Console.print(counts);
-  },
-};
+/* export const printFormattedNumbers = (numbers) => {
+  const formattedNumbers = numbers.join(", ");
+  Console.print(`[${formattedNumbers}]`);
+}; */

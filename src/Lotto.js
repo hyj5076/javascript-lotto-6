@@ -27,7 +27,7 @@ class Lotto {
   }
 
   getNumbers() {
-    return this.#numbers.slice();
+    return [...this.#numbers];
   }
 
   ascendingOrder() {
