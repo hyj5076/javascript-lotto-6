@@ -1,4 +1,4 @@
-import { ERROR, PRINT } from "../const/Messages.js";
+import { ERROR } from "../const/Messages.js";
 
 class UserPayment {
   constructor() {

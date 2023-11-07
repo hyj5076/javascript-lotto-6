@@ -1,24 +1,26 @@
 import Lotto from "./Lotto.js";
-import { runLotteryMachine } from "./domain/RunLotteryMachine.js";
 import UserBonusNumber from "./domain/UserBonusNumber.js";
 import UserPayment from "./domain/UserPayment.js";
-import { ask } from "./UI/inputView.js";
-import { print, counts } from "./UI/outputView.js";
-import { Console } from "@woowacourse/mission-utils";
 import UserBaseNumbers from "./domain/UserBaseNumbers.js";
 import LottoEvaluator from "./domain/LottoEvaluator.js";
+import { runLotteryMachine } from "./domain/RunLotteryMachine.js";
+import { ask } from "./UI/inputView.js";
+import { print } from "./UI/outputView.js";
+import { Console } from "@woowacourse/mission-utils";
 
 class App {
   constructor() {
     this.base = new UserBaseNumbers();
     this.bonus = new UserBonusNumber();
     this.payment = new UserPayment();
+    this.lottoEvaluator = null;
   }
 
   async play() {
     try {
       await this.setLotto();
-      this.createLotto();
+      const userTickets = this.createLotto();
+      this.evaluateLotto(userTickets);
     } catch (error) {
       Console.print(error.message);
       return Promise.reject(error);
@@ -26,12 +28,10 @@ class App {
   }
 
   async setLotto() {
-    // 사용자 입력값 호출
     const pay = await ask.payment();
     const baseNums = await ask.baseNumbers();
     const bonusNum = await ask.bonusNumber();
 
-    // 로또 유효성 검사와 함께 저장
     this.payment.setUserPayment(pay);
     this.base.setBaseNumbers(baseNums);
     this.bonus.setBonusNumber(bonusNum);
@@ -43,14 +43,26 @@ class App {
 
   createLotto() {
     const ticketCount = this.payment.numberOfTickets();
-    print.ticketCounts(ticketCount);
+    print.howManyBuyTickets(ticketCount);
+    const userTickets = [];
 
     for (let i = 0; i < ticketCount; i++) {
       const randomLottoNumbers = runLotteryMachine();
       const myLotto = new Lotto(randomLottoNumbers);
       myLotto.ascendingOrder();
       print.formattedNumbers(myLotto.getNumbers());
+      userTickets.push(myLotto.getNumbers());
     }
+    return userTickets;
+  }
+
+  evaluateLotto(userTickets) {
+    print.prizeStatistics();
+    print.dashLine();
+
+    this.lottoEvaluator = new LottoEvaluator(this.base.getBaseNumbers(), this.bonus.getBonusNumber());
+    const results = this.lottoEvaluator.evaluateTickets(userTickets);
+    print.prizeResults(results);
   }
 }
 
