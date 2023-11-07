@@ -3,7 +3,7 @@ import { runLotteryMachine } from "./domain/RunLotteryMachine.js";
 import UserBonusNumber from "./domain/UserBonusNumber.js";
 import UserPayment from "./domain/UserPayment.js";
 import { ask } from "./UI/inputView.js";
-import { print, prize, counts } from "./UI/outputView.js";
+import { print, counts } from "./UI/outputView.js";
 import { Console } from "@woowacourse/mission-utils";
 import UserBaseNumbers from "./domain/UserBaseNumbers.js";
 import LottoEvaluator from "./domain/LottoEvaluator.js";
@@ -13,16 +13,15 @@ class App {
     this.base = new UserBaseNumbers();
     this.bonus = new UserBonusNumber();
     this.payment = new UserPayment();
-    this.lottoEvaluator = null;
   }
 
   async play() {
     try {
       await this.setLotto();
-      const userTickets = this.createLotteryForCounts();
-      this.evaluateLottoTickets(userTickets); // 당첨 평가 처리
+      this.createLotto();
     } catch (error) {
       Console.print(error.message);
+      return Promise.reject(error);
     }
   }
 
@@ -42,24 +41,16 @@ class App {
     Console.print(`보너스숫자: ${bonusNum}`);
   }
 
-  createLotteryForCounts() {
-    const numberOfTickets = this.payment.numberOfTickets();
-    counts.ticket(numberOfTickets);
-    let userTickets = [];
-    for (let i = 0; i < numberOfTickets; i++) {
-      userTickets.push(runLotteryMachine());
+  createLotto() {
+    const ticketCount = this.payment.numberOfTickets();
+    print.ticketCounts(ticketCount);
+
+    for (let i = 0; i < ticketCount; i++) {
+      const randomLottoNumbers = runLotteryMachine();
+      const myLotto = new Lotto(randomLottoNumbers);
+      myLotto.ascendingOrder();
+      print.formattedNumbers(myLotto.getNumbers());
     }
-    Console.print(`티켓수에 따라 로또 생성: ${userTickets}`);
-    return userTickets;
-  }
-
-  evaluateLottoTickets(userTickets) {
-    print.prizeStatistics();
-    print.dashLine();
-
-    this.lottoEvaluator = new LottoEvaluator(this.base.getBaseNumbers(), this.bonus.getBonusNumber());
-    const results = this.lottoEvaluator.evaluateTickets(userTickets);
-    prize.results(results); // 결과 출력
   }
 }
 
