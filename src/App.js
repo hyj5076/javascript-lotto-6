@@ -3,6 +3,7 @@ import { runLotteryMachine } from "./domain/RunLotteryMachine.js";
 import UserBonusNumber from "./domain/UserBonusNumber.js";
 import UserPayment from "./domain/UserPayment.js";
 import { ask } from "./UI/inputView.js";
+import { print, prize, counts } from "./UI/outputView.js";
 import { Console } from "@woowacourse/mission-utils";
 import UserBaseNumbers from "./domain/UserBaseNumbers.js";
 import LottoEvaluator from "./domain/LottoEvaluator.js";
@@ -18,7 +19,8 @@ class App {
   async play() {
     try {
       await this.setLotto();
-      await this.createLotteryForCounts();
+      const userTickets = await this.runLotteryForCounts();
+      this.evaluateLottoTickets(userTickets); // 당첨 평가 처리
     } catch (error) {
       Console.print(error.message);
     }
@@ -40,28 +42,25 @@ class App {
     Console.print(`보너스숫자: ${bonusNum}`);
   }
 
-  /*   createLottoForCounts() {
+  async runLotteryForCounts() {
     const numberOfTickets = this.payment.numberOfTickets();
-    Console.print(`${numberOfTickets}`);
+    counts.ticket(numberOfTickets);
 
-    let userTickets = [];
+    this.userTickets = [];
     for (let i = 0; i < numberOfTickets; i++) {
-      userTickets.push(runLotteryMachine());
+      this.userTickets = await runLotteryMachine();
     }
-
     Console.print(`티켓수에 따라 로또 생성: ${userTickets}`);
-    return userTickets;
-  } */
+    return this.userTickets;
+  }
 
-  async createLotteryForCounts() {
-    const numberOfTickets = this.payment.numberOfTickets();
-    let userTickets = [];
-    for (let i = 0; i < numberOfTickets; i++) {
-      userTickets.push(runLotteryMachine()); // 티켓 수만큼 로또 번호 생성
-    }
+  evaluateLottoTickets(userTickets) {
+    print.prizeStatistics();
+    print.dashLine();
+
     this.lottoEvaluator = new LottoEvaluator(this.base.getBaseNumbers(), this.bonus.getBonusNumber());
-    const result = this.lottoEvaluator.evaluateTickets(userTickets); // 당첨 결과 계산
-    Console.print(result); // 결과 출력
+    const results = this.lottoEvaluator.evaluateTickets(userTickets);
+    prize.results(results); // 결과 출력
   }
 }
 
