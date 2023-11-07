@@ -1,20 +1,18 @@
 import { ERROR } from "../const/Messages.js";
 
 class UserBonusNumber {
-  #bonusNumber;
-
   constructor() {
-    this.#bonusNumber = null;
+    this.bonusNumber = null;
   }
 
   getBonusNumber() {
-    return this.#bonusNumber;
+    return this.bonusNumber;
   }
 
   setBonusNumber(input) {
     const number = parseInt(input.trim(), 10);
     this.#validate(number);
-    this.#bonusNumber = number;
+    this.bonusNumber = number;
   }
 
   #validate(number) {

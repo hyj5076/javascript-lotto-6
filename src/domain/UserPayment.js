@@ -1,20 +1,18 @@
 import { ERROR } from "../const/Messages.js";
 
 class UserPayment {
-  #payment;
-
   constructor() {
-    this.#payment = null;
+    this.payment = null;
   }
 
   getUserPayment() {
-    return this.#payment;
+    return this.payment;
   }
 
   setUserPayment(input) {
     const pay = parseInt(input.trim(), 10);
     this.#validate(pay);
-    this.#payment = pay;
+    this.payment = pay;
   }
 
   #validate(pay) {
@@ -24,10 +22,10 @@ class UserPayment {
   }
 
   numberOfTickets() {
-    if (this.#payment === null) {
+    if (this.payment === null) {
       return 0;
     }
-    const ticketCounts = this.#payment / 1000;
+    const ticketCounts = this.payment / 1000;
     return ticketCounts;
   }
 }
