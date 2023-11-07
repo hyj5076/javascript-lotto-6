@@ -17,8 +17,8 @@ class App {
 
   async play() {
     try {
-      this.makeLotto();
       await this.setLotto();
+      this.createLottoForCounts();
     } catch (error) {
       Console.print(error.message);
     }
@@ -35,18 +35,22 @@ class App {
     this.base.setBaseNumbers(baseNums);
     this.bonus.setBonusNumber(bonusNum);
 
-    // 티켓과 기계 번호를 평가
-    const numberOfTickets = this.payment.numberOfTickets();
-
     Console.print(`지불금액: ${pay}`);
-    Console.print(`티켓수: ${numberOfTickets}`);
     Console.print(`기본숫자: ${baseNums}`);
     Console.print(`보너스숫자: ${bonusNum}`);
   }
 
-  makeLotto() {
-    const lottoNumbers = runLotteryMachine();
-    Console.print(`기계로또: ${lottoNumbers}`);
+  createLottoForCounts() {
+    const numberOfTickets = this.payment.numberOfTickets();
+    Console.print(`티켓수: ${numberOfTickets}`);
+
+    let userTickets = [];
+    for (let i = 0; i < numberOfTickets; i++) {
+      userTickets.push(runLotteryMachine());
+    }
+
+    Console.print(`티켓수에 따라 로또 생성: ${userTickets}`);
+    return userTickets;
   }
 }
 
