@@ -1,4 +1,5 @@
 import { PRINT, PRIZE } from "../const/Messages.js";
+import { Console } from "@woowacourse/mission-utils";
 
 class LottoEvaluator {
   constructor(baseNumbers, bonusNumber) {
@@ -42,6 +43,7 @@ class LottoEvaluator {
   }
 
   evaluateTickets(userTickets) {
+    Console.print(userTickets);
     userTickets.forEach((ticket) => this.evaluateTicket(ticket));
     return this.getResults();
   }

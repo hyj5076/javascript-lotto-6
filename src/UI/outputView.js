@@ -28,3 +28,9 @@ export const prize = {
     Console.print(lottoResults);
   },
 };
+
+export const counts = {
+  ticket(counts) {
+    Console.print(counts);
+  },
+};

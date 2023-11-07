@@ -19,7 +19,7 @@ class App {
   async play() {
     try {
       await this.setLotto();
-      const userTickets = await this.runLotteryForCounts();
+      const userTickets = this.createLotteryForCounts();
       this.evaluateLottoTickets(userTickets); // 당첨 평가 처리
     } catch (error) {
       Console.print(error.message);
@@ -42,16 +42,15 @@ class App {
     Console.print(`보너스숫자: ${bonusNum}`);
   }
 
-  async runLotteryForCounts() {
+  createLotteryForCounts() {
     const numberOfTickets = this.payment.numberOfTickets();
     counts.ticket(numberOfTickets);
-
-    this.userTickets = [];
+    let userTickets = [];
     for (let i = 0; i < numberOfTickets; i++) {
-      this.userTickets = await runLotteryMachine();
+      userTickets.push(runLotteryMachine());
     }
     Console.print(`티켓수에 따라 로또 생성: ${userTickets}`);
-    return this.userTickets;
+    return userTickets;
   }
 
   evaluateLottoTickets(userTickets) {
