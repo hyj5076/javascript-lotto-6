@@ -25,24 +25,27 @@ class App {
       this.returnRate();
     } catch (error) {
       Console.print(error.message);
-      return Promise.reject(error);
     }
   }
 
   async setLotto() {
-    try {
-      const pay = await ask.payment();
-      const baseNums = await ask.baseNumbers();
-      const bonusNum = await ask.bonusNumber();
+    while (true) {
+      try {
+        const pay = await ask.payment();
+        const baseNums = await ask.baseNumbers();
+        const bonusNum = await ask.bonusNumber();
 
-      this.payment.setUserPayment(pay);
-      this.base.setBaseNumbers(baseNums);
-      this.bonus.setBonusNumber(bonusNum);
+        this.payment.setUserPayment(pay);
+        this.base.setBaseNumbers(baseNums);
+        this.bonus.setBonusNumber(bonusNum);
 
-      const lottoNumbers = this.base.getBaseNumbers();
-      new Lotto(lottoNumbers);
-    } catch (error) {
-      Console.print(error.message);
+        const lottoNumbers = this.base.getBaseNumbers();
+        new Lotto(lottoNumbers);
+
+        break;
+      } catch (error) {
+        Console.print(error.message);
+      }
     }
   }
 
