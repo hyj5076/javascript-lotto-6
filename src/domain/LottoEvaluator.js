@@ -14,8 +14,8 @@ class LottoEvaluator {
   }
 
   evaluateTicket(ticket) {
-    let matchCount = ticket.filter((number) => this.baseNumbers.includes(number)).length;
-    let isBonusMatched = ticket.includes(this.bonusNumber);
+    const matchCount = ticket.filter((number) => this.baseNumbers.includes(number)).length;
+    const isBonusMatched = ticket.includes(this.bonusNumber);
 
     switch (matchCount) {
       case 6:
