@@ -57,6 +57,10 @@ class App {
     this.base.setBaseNumbers(baseNums);
     this.bonus.setBonusNumber(bonusNum);
 
+    Console.print(pay);
+    Console.print(baseNums);
+    Console.print(bonusNum);
+
     const lottoNumbers = this.base.getBaseNumbers();
     new Lotto(lottoNumbers);
   }
